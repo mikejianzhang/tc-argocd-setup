@@ -28,3 +28,10 @@ spec:
   destination:
     server: https://kubernetes.docker.internal:6443
     namespace: tc-prod
+
+  # Ignore differences at the specified json pointers
+  ignoreDifferences:
+  - group: apps
+    kind: Deployment
+    jsonPointers:
+    - /spec/replicas
