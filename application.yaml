@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: tc-prod
+  # You'll usually want to add your resources to the argocd namespace.
+  namespace: argocd
+  # Add a this finalizer ONLY if you want these to cascade delete.
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  # The project the application belongs to.
+  project: technical-challenge
+
+  # Source of the application manifests
+  source:
+    repoURL: https://github.com/mikejianzhang/tc-deployment
+    targetRevision: HEAD
+    path: tc-prod
+
+    # helm specific config
+    helm:
+      # Helm values files for overriding values in the helm chart
+      # The path is relative to the spec.source.path directory defined above
+      valueFiles:
+      - values.yaml
+
+  # Destination cluster and namespace to deploy the application
+  destination:
+    server: https://kubernetes.docker.internal:6443
+    namespace: tc-prod

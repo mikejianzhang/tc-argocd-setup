@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: technical-challenge
+  namespace: argocd
+spec:
+  # Project description
+  description: Technical Challenge
+
+  # Allow manifests to deploy from any Git repos
+  sourceRepos:
+  - 'https://github.com/mikejianzhang/tc-deployment.git'
+
+  # Only permit applications to deploy to the tc namespace in the same cluster
+  destinations:
+  - namespace: tc-dev
+    server: https://kubernetes.docker.internal:6443
+  - namespace: tc-prod
+    server: https://kubernetes.docker.internal:6443
+
+  # Enables namespace orphaned resource monitoring.
+  orphanedResources:
+    warn: false
