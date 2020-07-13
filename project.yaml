@@ -14,9 +14,9 @@ spec:
   # Only permit applications to deploy to the tc namespace in the same cluster
   destinations:
   - namespace: tc-dev
-    server: https://kubernetes.docker.internal:6443
+    server: https://10.0.2.116:6443
   - namespace: tc-prod
-    server: https://kubernetes.docker.internal:6443
+    server: https://10.0.2.116:6443
 
   # Enables namespace orphaned resource monitoring.
   orphanedResources:

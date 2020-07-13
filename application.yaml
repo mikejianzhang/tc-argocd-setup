@@ -26,7 +26,7 @@ spec:
 
   # Destination cluster and namespace to deploy the application
   destination:
-    server: https://kubernetes.docker.internal:6443
+    server: https://10.0.2.116:6443
     namespace: tc-prod
 
   # Ignore differences at the specified json pointers
